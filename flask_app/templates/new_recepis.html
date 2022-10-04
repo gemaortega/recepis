@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Recepis</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
+  <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">RecepisApp</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/ninjas">Recepis</a></li>
+          <li><a href="/dojos">Created</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid bg-3">
+    <h2>Add a new recepi</h2><br>
+    <h4>Description must not be blank</h4>
+      <form action="/created_ninja" method="POST">
+          <div class="form-group">
+            <label for="recepi_id">Recepi</label>
+            <select class="form-control" name="recepi_id" id="recepi_id">
+                {% for recepi in all_recepis %}
+                <option value="{{recepi.id}}">{{recepi.name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Rantarou">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Indadera">
+          </div>
+          <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <input type="text" class="form-control" id="instructions" name="instructions" placeholder="10">
+          </div>
+      </form>
+      <h5>Data coocked/made</h5>
+      <div class="input-group date" data-provide="datepicker">
+        <input type="text" class="form-control">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+            $('.datepicker').datepicker({
+              format: 'mm/dd/yyyy',
+              startDate: '-3d'
+          });
+          </div>
+      <h5>Under 30 minutes?</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            No
+        </label>
+      </div>
+    </div>
+  </div><br>
+
+  <footer class="container-fluid text-center">
+    <p>Recepis Share App</p>
+  </footer>
+
+</body>
+
+</html>

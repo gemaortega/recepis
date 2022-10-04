@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Show</title>
+</head>
+<body>
+    <h1>Recepi: {{recepi.name}}</h1>
+    <table>
+        <th>
+            <tr>
+                <th>Description</th>
+                <th>Under 30 minutes?</th>
+                <th>Instructions</th>
+                <th>Data made</th>
+            </tr>
+            {% for recepi in ninjas_in_dojo %}
+            <tr>
+                <td>{{ninja.description}}</td>
+                <td>{{ninja.under}}</td>
+                <td>{{ninja.instructions}}</td>
+                <td>{{ninja.data}}</td>
+            </tr>
+        {% endfor %}
+        </th>
+    </table>
+</body>
+</html>

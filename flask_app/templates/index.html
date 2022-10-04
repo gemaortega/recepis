@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Recipes</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
+  <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">RecipesApp</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/recepis">Recipes</a></li>
+          <li><a href="/new_recepis">Created</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login_reg"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1>Recipes Share App</h1>
+      <blockquote class="blockquote text-center">
+        <p  class="text-justify">The Recipe Share APP is an easy-to-use, all-in-one recipe creator, recipe organizer and meal planner available every day of the year.</p>
+        <p class="text-center">ADD RECIPES QUICKLY AND EASILY</p>
+        <p class="text-justify">Enter your recipes with as much or as little information as you want. Copy and paste recipes from your existing documents or applications. Sort your recipes by course and category. Add photos, rate your recipes and mark your favorites.</p>
+        <p class="text-center">COMMENT AND SHARE RECIPES WITH OTHER USERS.</p>
+        <p class="text-justify">Comment and share recipes from other users. Customize imported recipes to suit your needs</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="container-fluid bg-3 text-center">
+    <h2>Popular recipes</h3><br>
+    <div class="row">
+      <div class="col-sm-3">
+        <h3>Ramen</h3>
+        <img src="https://p.kindpng.com/picc/s/149-1492779_mie-ramen-png-3-png-image-transparent.png" class="img-responsive" style="width:100%" alt="ramen">
+      </div>
+      <div class="col-sm-3">
+        <h3>Doroyaki</h3>
+        <img src="data:image/jpeg;base64,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" class="img-responsive" style="width:100%" alt="Doroyaki">
+      </div>
+      <div class="col-sm-3">
+        <h3>Teriyaki</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIIGSiz80mNDpw4gW_eDH4AAtZaK2MYTZOv8vE7CpZM3cz8cGmGr3dS8G5byucz0s8vmw&usqp=CAU" class="img-responsive" style="width:100%" alt="teriyaki">
+      </div>
+      <div class="col-sm-3">
+        <h3>Mochi</h3>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe5N8u5t_BHMRiJapVBqkejGJ6__ILAcEdr3sz-1qz3oe71aScNoIgVeugEWhRhoMdFKg&usqp=CAU" class="img-responsive" style="width:100%" alt="mochi">
+      </div>
+    </div>
+  </div><br>
+
+
+  <footer class="container-fluid text-center">
+    <p>RecipesApp</p>
+  </footer>
+
+</body>
+
+</html>
