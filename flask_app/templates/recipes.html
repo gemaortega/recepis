@@ -37,10 +37,10 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">Home</a></li>
-          <li><a href="/new_recepis">Created</a></li>
+          <li><a href="/create_recipe">Create Recipe</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout WIP</a></li>
         </ul>
       </div>
     </div>
@@ -48,8 +48,10 @@
 
   <div class="container-fluid bg-3">
     <h1>Welcome {{user_name}}</h1>
-      <h2>All posted recipes</h2>
-    <!-- <table class="table">
+    <h2>All posted recipes</h2>
+
+
+    <table class="table">
       <thead>
         <tr>
             <th scope="col">Name</th>
@@ -59,14 +61,16 @@
         </tr>
       </thead>
       <tbody>
+        {% for recipe in all_recipes %}
         <tr>
-            <td>{{session['name']}}</td>
-            <td>{{session['under']}}</td>
-            <td>{{session['posted']}}</td>
-            <td>{{session['action']}}</td>
+            <td>{{ recipe['name'] }}</td>
+            <td>{{ recipe['under_thirty'] }}</td>
+            <td>{{ recipe['user_name'] }}</td>
+            <td> WIP </td>
         </tr>
+        {% endfor %}
       </tbody>
-    </table> -->
+    </table>
 
   </div><br>
 

@@ -1,16 +1,13 @@
 from flask_app.models.user import User
-from flask_app.models.recepi import Recepi
+from flask_app.models.recipe import Recipe
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
 
-@app.route('/')
-def root():
-    return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login_reg')
 def login_reg():
     return render_template('login_reg.html')
 
@@ -79,4 +76,8 @@ def login():
         return redirect('/')
     # si las contraseñas coinciden, configuramos el user_id en sesión
     # ¡¡¡Nunca renderices en una post!!!
-    return render_template('recepis.html', user_name=user_in_db.first_name)
+    session['user_id'] = user_in_db.id
+    session['user_name'] = user_in_db.first_name
+    print(f"session['user_id']: {session['user_id']}")
+    print(f"session['user_name']: {session['user_name']}")
+    return render_template('recipes.html', user_name=user_in_db.first_name, all_recipes=Recipe.all_recipes_with_user())
