@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>RecipesApp</title>
+  <title>RecepisApp</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
@@ -69,7 +69,7 @@
             <td>{{ recipe['under_thirty'] }}</td>
             <td>{{ recipe['user_name'] }}</td>
             {% if recipe['user_id'] == session['user_id'] %} 
-            <td><a href="/delete/{{recipe['id']}}">Delete</a> \ <a href="/edit/{{recipe['id']}}">Edit</a> \ <a href="/view/{{recipe['id]}}">View</a> </td>
+            <td><a href="/delete/{{recipe['id']}}">Delete</a> | <a href="/edit/{{recipe['id']}}">Edit</a> | <a href="/view/{{recipe['id]}}">View</a> </td>
             {% else %}
             <td><a href="/view/{{recipe['id]}}">View</a></td>
             {% endif %}
