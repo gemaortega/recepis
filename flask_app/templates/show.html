@@ -17,12 +17,12 @@
                 <th>Instructions</th>
                 <th>Data made</th>
             </tr>
-            {% for recepi in ninjas_in_dojo %}
+            {% for recepi in get_users_with_recepi %}
             <tr>
-                <td>{{ninja.description}}</td>
-                <td>{{ninja.under}}</td>
-                <td>{{ninja.instructions}}</td>
-                <td>{{ninja.data}}</td>
+                <td>{{user.description}}</td>
+                <td>{{user.under}}</td>
+                <td>{{user.instructions}}</td>
+                <td>{{user.data}}</td>
             </tr>
         {% endfor %}
         </th>

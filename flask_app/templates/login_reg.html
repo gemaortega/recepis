@@ -62,8 +62,8 @@
     <div class="row">
       <div class="col-lg-6 mb-4">
         <div class="card">
-          {% with messages_registro = get_flashed_messages(category_filter=['register']) %} 
-            {% if messages_registro %}
+          {% with messages_register = get_flashed_messages(category_filter=['register']) %} 
+            {% if messages_register %}
             <ul class="flashes list-group">
               {% for registro in messages_register %}
               <li class="list-group-item">

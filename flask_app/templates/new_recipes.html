@@ -49,6 +49,17 @@
   </nav>
 
   <div class="container-fluid bg-3">
+    {% with messages_new_recepi = get_flashed_messages(category_filter=['new_recepi']) %} 
+            {% if messages_new_recepi %}
+            <ul class="flashes list-group">
+              {% for new_recepi in messages_new_recepi %}
+              <li class="list-group-item">
+                <div class="alert alert-success">{{new_recepi}}</div>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %} 
+          {% endwith %}
     <h2>Add a new recipe</h2><br>
     <h4>Description must not be blank</h4>
     <form action="/created" method="POST">

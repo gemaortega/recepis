@@ -1,5 +1,7 @@
+from datetime import date, datetime
 from flask_app.config.constants import DB_SCHEMA
 from flask_app.config.mysqlconnection import connect_to_mysql
+from flask import flash
 
 
 class Recipe:
@@ -12,6 +14,20 @@ class Recipe:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
+    
+    @staticmethod
+    def validate_recepi(user):
+        is_valid = True # asumimos que esto es true
+        if len(user['name']) < 3:
+            flash("Name must be at least 3 characters.", 'new_recepi')
+            is_valid = False
+        if len(user['description']) < 1:
+            flash("Description must not be blank.", 'new_recepi')
+            is_valid = False
+        if len(user['instructions']) < 1:
+            flash("Instructions must not be blank.", 'new_recepi')
+            is_valid = False
+        return is_valid
 
     @classmethod
     def created(cls, data):

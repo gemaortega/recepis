@@ -38,6 +38,8 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">Home</a></li>
           <li><a href="/create_recipe">Create Recipe</a></li>
+          <li><a href="/edit_recipe">Edit Recipe</a></li>
+          <li><a href="/show">View Recipe</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout WIP</a></li>
@@ -66,7 +68,11 @@
             <td>{{ recipe['name'] }}</td>
             <td>{{ recipe['under_thirty'] }}</td>
             <td>{{ recipe['user_name'] }}</td>
-            <td> WIP </td>
+            {% if recipe['user_id'] == session['user_id'] %} 
+            <td><a href="/delete/{{recipe['id']}}">Delete</a> \ <a href="/edit/{{recipe['id']}}">Edit</a> \ <a href="/view/{{recipe['id]}}">View</a> </td>
+            {% else %}
+            <td><a href="/view/{{recipe['id]}}">View</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
       </tbody>
