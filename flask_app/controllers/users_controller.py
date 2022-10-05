@@ -1,4 +1,5 @@
 from flask_app.models.user import User
+from flask_app.models.recepi import Recepi
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_bcrypt import Bcrypt
@@ -7,6 +8,10 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def root():
+    return render_template('index.html')
+
+@app.route('/login')
+def login_reg():
     return render_template('login_reg.html')
 
 @app.route('/register', methods=['POST'])
@@ -15,7 +20,7 @@ def register():
         # redirigimos a la plantilla con el formulario
         return redirect('/')
     # ...hacer otras cosas
-    return redirect('/dashboard')
+    return redirect('/login')
 
 # RUTAS DE CREACION (CREATE)
 @app.route('/create_user', methods=['POST'])
@@ -33,7 +38,7 @@ def create_user():
     print(data, "EFECTIVAMENTE ATRAPAMOS LA INFO DEL FORMULARIO")
     id_user = User.save(data)
     print(id_user, "QUE RETORNO EL HABER REGISTRADO UN USUARIO NUEVO?")
-    return render_template('dashboard.html', user_name=request.form['first_name'])
+    return render_template('recepis.html', user_name=request.form['first_name'])
 
 
 @app.route('/clearsession')
@@ -74,4 +79,4 @@ def login():
         return redirect('/')
     # si las contraseñas coinciden, configuramos el user_id en sesión
     # ¡¡¡Nunca renderices en una post!!!
-    return render_template('dashboard.html', user_name=user_in_db.first_name)
+    return render_template('recepis.html', user_name=user_in_db.first_name)
