@@ -69,9 +69,9 @@
             <td>{{ recipe['under_thirty'] }}</td>
             <td>{{ recipe['user_name'] }}</td>
             {% if recipe['user_id'] == session['user_id'] %} 
-            <td><a href="/delete/{{recipe['id']}}">Delete</a> | <a href="/edit/{{recipe['id']}}">Edit</a> | <a href="/view/{{recipe['id]}}">View</a> </td>
+            <td><a href="/delete/{{recipe['id']}}">Delete</a> | <a href="/edit/{{recipe['id']}}">Edit</a> | <a href="/view/{{recipe['id']}}">View</a> </td>
             {% else %}
-            <td><a href="/view/{{recipe['id]}}">View</a></td>
+            <td><a href="/view/{{recipe['id']}}">View</a></td>
             {% endif %}
         </tr>
         {% endfor %}
