@@ -1,31 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Recipe</title>
+    <title>RecipesApp</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
+    <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Recipe: {{recipe['name']}}</h1>
-    <table class="table">
-        <thead>
-          <tr>
-              <th scope="col">Description</th>
-              <th scope="col">Under 30 minutes?</th>
-              <th scope="col">Instructions</th>
-              <th scope="col">Data made</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{recipe['description']}}</td>
-                <td>{{recipe['under_thirty']}}</td>
-                <td>{{recipe['instructions']}}</td>
-                <td>{{recipe['created_at']}}</td>
-            </tr>
-        </tbody>
-    </table>
-</body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Recipes</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/create_recipe">Create Recipe</a></li>
+                    <li><a href="/edit_recipe">Edit Recipe</a></li>
+                    <li><a href="/show">View Recipe</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout WIP</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <body>
+        <h1>Recipe: {{recipe['name']}}</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Under 30 minutes?</th>
+                    <th scope="col">Instructions</th>
+                    <th scope="col">Data made</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{recipe['description']}}</td>
+                    <td>{{recipe['under_thirty']}}</td>
+                    <td>{{recipe['instructions']}}</td>
+                    <td>{{recipe['created_at']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+
 </html>

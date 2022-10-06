@@ -25,13 +25,16 @@ def created():
     Recipe.created(request.form)
     return redirect('/recipes')
 
-@app.route('/edit', methods=['POST'])
-def edit():
-    if not Recipe.validate_recepi(request.form):
-        print("invalid recipe")
-        return redirect('/edit/request.form['id']')
-    Recipe.edit(request.form)
-    return redirect('/edit_recipe.html', recipe=recipe)
+@app.route('/edit/<int:recipe_id>')
+def edit_recipe(recipe_id):
+    print(f'edit_recipe: {recipe_id}')
+    data={
+        "id": recipe_id
+    }
+    recipe = Recipe.get_recipe(data)
+    print('frecipe:{recipe}')
+    recipe.created_at = recipe.created_at.strtime('%Y-%m-%d')
+    return render_template('/edit_recipe.html', recipe=recipe)
 
 
 @app.route('/recipe/<int:recipe_id>')
