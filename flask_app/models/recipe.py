@@ -50,6 +50,18 @@ class Recipe:
         return recipes
 
     @classmethod
+    def get_recipe_with_user(cls, recipe_id):
+        """
+            Returns a dictionary the recipes and their author (user_name, user_id).
+        """
+        query = f"""SELECT u.id AS user_id, u.first_name AS user_name, r.* 
+        FROM recipes AS r 
+        JOIN users AS u ON u.id = r.user_id
+        WHERE r.id = {recipe_id};"""
+        result = connect_to_mysql(DB_SCHEMA).query_db(query)
+        return result[0]
+
+    @classmethod
     def get_recipe(cls, data):
         query = "SELECT * FROM recipes WHERE id = %(id)s;"
         result = connect_to_mysql(DB_SCHEMA).query_db(query, data)

@@ -24,19 +24,14 @@ def created():
     Recipe.created(request.form)
     return redirect('/recipes')
 
-@app.route('/recepis', methods=['POST'])
+@app.route('/recipes', methods=['POST'])
 def edit_recepi():
     Recipe.edited(request.form)
-    return redirect('/edit_recepis.html')
+    return redirect('/edit_recipes.html')
 
 
-@app.route('/recipes/<int:recipe_id>')
-def show_recepi(recipe_id):
-    
-    data = {
-        "id": recipe_id
-    }
-    recepi = Recipe.get_recepi(data)
-    users_with_recepi = recepi.get_users_with_recepi(data)
-    return render_template('show.html', recepi=recepi, ninjas_in_recepi=users_with_recepi)
-
+@app.route('/recipe/<int:recipe_id>')
+def show_recipe(recipe_id):
+    recipe = Recipe.get_recipe_with_user(recipe_id)
+    print(f"recipe: {recipe}")
+    return render_template('show.html', recipe=recipe)

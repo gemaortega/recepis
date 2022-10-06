@@ -35,7 +35,7 @@ def create_user():
     print(data, "EFECTIVAMENTE ATRAPAMOS LA INFO DEL FORMULARIO")
     id_user = User.save(data)
     print(id_user, "QUE RETORNO EL HABER REGISTRADO UN USUARIO NUEVO?")
-    return render_template("/recepis", user_name=request.form['first_name'])
+    return render_template("recipes.html", user_name=request.form['first_name'])
 
 
 @app.route('/clearsession')
