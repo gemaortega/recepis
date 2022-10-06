@@ -9,12 +9,12 @@ class MySQLConnection:
     """
     def __init__(self, db):
         connection = pymysql.connect(host=DB_HOST,
-                                     user=DB_USER,
-                                     password=DB_PASSWORD,
-                                     db=db,
-                                     charset='utf8mb4',
-                                     cursorclass=pymysql.cursors.DictCursor,
-                                     autocommit=True)
+                                    user=DB_USER,
+                                    password=DB_PASSWORD,
+                                    db=db,
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor,
+                                    autocommit=True)
         # establish the connection to the database
         self.connection = connection
 
