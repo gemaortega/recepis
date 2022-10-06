@@ -11,23 +11,7 @@ bcrypt = Bcrypt(app)
 def login_reg():
     return render_template('login_reg.html')
 
-# RUTAS DE CREACION (CREATE)
-@app.route('/create_user', methods=['POST'])
-def create_user():
-    if not User.validate_user(request.form):
-        return redirect('/')
-    pw_hash = bcrypt.generate_password_hash(request.form['password'])
-    print(f"pw_hash: {pw_hash}")
-    data = {
-        'first_name': request.form['first_name'],
-        'last_name': request.form['last_name'],
-        'email': request.form['email'],
-        'password': pw_hash
-    }
-    print(data, "EFECTIVAMENTE ATRAPAMOS LA INFO DEL FORMULARIO")
-    id_user = User.save(data)
-    print(id_user, "QUE RETORNO EL HABER REGISTRADO UN USUARIO NUEVO?")
-    return render_template("recipes.html", user_name=request.form['first_name'])
+
 
 @app.route('/register', methods=['POST'])
 def register():
