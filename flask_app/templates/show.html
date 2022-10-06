@@ -42,7 +42,7 @@
                     <li><a href="/show">View Recipe</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout WIP</a></li>
+                    <li><a href="'/logout'"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -50,24 +50,29 @@
 
     <body>
         <h1>Recipe: {{recipe['name']}}</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Description</th>
-                    <th scope="col">Under 30 minutes?</th>
-                    <th scope="col">Instructions</th>
-                    <th scope="col">Data made</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{recipe['description']}}</td>
-                    <td>{{recipe['under_thirty']}}</td>
-                    <td>{{recipe['instructions']}}</td>
-                    <td>{{recipe['created_at']}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <!--https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_grid_ex&stacked=h -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col" style="background-color:lavender;">Descripcion:</div>
+                <div class="col" style="background-color:orange;">{{recipe['description']}}</div>
+            </div>
+            <div class="row">
+                <div class="col" style="background-color:lavender;">Under 30 minutes?</div>
+                <div class="col" style="background-color:orange;">{{recipe['under_thirty']}}</div>
+            </div>
+            <div class="row">
+                <div class="col" style="background-color:lavender;">Instructions:</div>
+                <div class="col" style="background-color:orange;">{{recipe['instructions']}}</div>
+            </div>
+            <div class="row">
+                <div class="col" style="background-color:lavender;">Data made:</div>
+                <div class="col" style="background-color:orange;">{{recipe['created_at']}}</div>
+            </div>
+        </div>
+        <footer class="container-fluid text-center">
+            <p>Recipes Share App</p>
+        </footer>
+
     </body>
 
 </html>
