@@ -67,7 +67,11 @@
         <tr>
             <td>{{ recipe['name'] }}</td>
             <td>
-              {{ recipe['under_thirty'] }}
+              {% if recipe['under_thirty']== 1 %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
             </td>
             <td>{{ recipe['user_name'] }}</td>
             {% if recipe['user_id'] == session['user_id'] %} 

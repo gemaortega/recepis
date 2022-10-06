@@ -24,10 +24,14 @@ def created():
     Recipe.created(request.form)
     return redirect('/recipes')
 
-@app.route('/recipes', methods=['POST'])
-def edit_recepi():
-    Recipe.edited(request.form)
-    return redirect('/edit_recipes.html')
+@app.route('/edit/<int:recipe_id>')
+def edit_recipe(recipe_id):
+    data = {
+        "id": recipe_id
+    }
+    recipe= Recipe.get_recipe(data)
+    print(f'recipe:{recipe}')
+    return render_template('/edit_recipe.html', recipe=recipe)
 
 
 @app.route('/recipe/<int:recipe_id>')

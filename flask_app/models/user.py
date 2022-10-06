@@ -36,6 +36,9 @@ class User:
         if len(user['password']) < 6:
             flash("password must be at least 6 characters.", 'register')
             is_valid = False
+        if user['password'] != user['confirm']:
+            flash("Passwords do not match!", "register")
+            is_valid = False
         return is_valid
 
     @classmethod
