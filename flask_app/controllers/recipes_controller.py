@@ -20,12 +20,14 @@ def recipes():
 @app.route('/created', methods=['POST'])
 def created():
     if not Recipe.validate_recepi(request.form):
+        print("invalid recipe")
         return redirect("/create_recipe")
     Recipe.created(request.form)
     return redirect('/recipes')
 
 @app.route('/edit/<int:recipe_id>')
 def edit_recipe(recipe_id):
+    print(f'edit_recipe: {recipe_id}')
     data = {
         "id": recipe_id
     }

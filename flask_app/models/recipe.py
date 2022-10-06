@@ -8,9 +8,9 @@ class Recipe:
     def __init__(self, data):
         self.id = data['id']
         self.name = data['name']
-        self.description = data ['description']
-        self.instructions = data ['instructions']
-        self.under_thirty = data ['under']
+        self.description = data['description']
+        self.instructions = data['instructions']
+        self.under_thirty = data['under_thirty']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
@@ -32,7 +32,7 @@ class Recipe:
     @classmethod
     def created(cls, data):
         query = """INSERT INTO recipes (name, description, instructions, under_thirty, user_id) 
-        VALUES (%(name)s, %(description)s, %(instructions)s, %(under)s, %(user_id)s);
+        VALUES (%(name)s, %(description)s, %(instructions)s, %(under_thirty)s, %(user_id)s);
         """
         result = connect_to_mysql(DB_SCHEMA).query_db(query, data)
         return result
