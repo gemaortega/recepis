@@ -52,6 +52,7 @@
         <h2>Edit Recipe</h2><br>
         <form action="/created" method="POST">
             <input type="hidden" id="user_id" name="user_id" value="{{recipe.user_id}}">
+            <input type="hidden" id="recipe_id" name="id" value="{{recipe.id}}">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{recipe.name}}">
