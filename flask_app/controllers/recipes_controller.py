@@ -33,7 +33,7 @@ def edit_recipe(recipe_id):
     }
     recipe= Recipe.get_recipe(data)
     print(f'recipe:{recipe}')
-    return render_template('/edit_recipe.html', recipe=recipe)
+    return render_template('edit_recipe.html', recipe=recipe)
 
 
 @app.route('/recipe/<int:recipe_id>')
