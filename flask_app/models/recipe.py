@@ -66,3 +66,21 @@ class Recipe:
         query = "SELECT * FROM recipes WHERE id = %(id)s;"
         result = connect_to_mysql(DB_SCHEMA).query_db(query, data)
         return cls(result[0])
+
+    @classmethod
+    def edit(cls, data):
+        query = """UPDATE recipes
+                        SET name = %(name)s
+                        , description = %(description)s
+                        , instruction = %(instructions)s
+                        , under_thirty = %(under_thyrty)s
+                        , created_at = %(created_at)s
+                        , updated_at = NOW()
+                    WHERE id= %(id)s;"""
+        result = connect_to_mysql(DB_SCHEMA).query_db(query, data)
+        print(f'Resultado UPDATE: {result}')
+
+    @classmethod
+    def delete_recipe(cls,data):
+        query  = "DELETE FROM users WHERE id = %(id)s;"
+        return connect_to_mysql(DB_SCHEMA).query_db(query, data)

@@ -75,7 +75,7 @@
             </td>
             <td>{{ recipe['user_name'] }}</td>
             {% if recipe['user_id'] == session['user_id'] %} 
-            <td><a href="/delete/{{recipe['id']}}">Delete</a> | <a href="/edit/{{recipe['id']}}">Edit</a> | <a href="/recipe/{{recipe['id']}}">View</a> </td>
+            <td><a href="/recipe/{{recipe['id']}}">Delete</a> | <a href="/edit/{{recipe['id']}}">Edit</a> | <a href="/recipe/{{recipe['id']}}">View</a> </td>
             {% else %}
             <td><a href="/recipe/{{recipe['id']}}">View</a></td>
             {% endif %}
