@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
     <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+    <script src="https://kit.fontawesome.com/6c7c322b7f.js" crossorigin="anonymous"></script>
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -32,17 +33,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Recipes</a>
+                <a class="navbar-brand" href="#">Recipes App</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/recipes">Recipes</a></li>
+                    {% if 'user_id' in session %}
                     <li><a href="/create_recipe">Create Recipe</a></li>
-                    <li><a href="/edit_recipe">Edit Recipe</a></li>
-                    <li><a href="/show">View Recipe</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="'/logout'"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout, {{session['user_name']}}</a></li>
+                {% else %}
+                    <li><a href="/login_reg"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                {% endif %}
                 </ul>
             </div>
         </div>

@@ -1,3 +1,4 @@
+from crypt import methods
 from datetime import datetime
 from flask import render_template, redirect, request
 
@@ -19,22 +20,31 @@ def recipes():
 
 @app.route('/created', methods=['POST'])
 def created():
-    if not Recipe.validate_recepi(request.form):
+    if not Recipe.validate_recipe(request.form):
         print("invalid recipe")
         return redirect("/create_recipe")
     Recipe.created(request.form)
     return redirect('/recipes')
 
+
 @app.route('/edit/<int:recipe_id>')
-def edit_recipe(recipe_id):
+def edit_recipe_form(recipe_id):
     print(f'edit_recipe: {recipe_id}')
     data={
         "id": recipe_id
     }
     recipe = Recipe.get_recipe(data)
-    print('frecipe:{recipe}')
-    recipe.created_at = recipe.created_at.strtime('%Y-%m-%d')
+    recipe.created_at = recipe.created_at.strftime('%Y-%m-%d')
     return render_template('/edit_recipe.html', recipe=recipe)
+
+
+@app.route('/edit', methods=['POST'])
+def edit_recipe():
+    if not Recipe.validate_recipe(request.form):
+        print("invalid recipe")
+        redirect(f'/edit/{request.form["id"]}')
+    Recipe.edit(request.form)
+    return redirect('/recipes')
 
 
 @app.route('/recipe/<int:recipe_id>')
@@ -42,6 +52,7 @@ def show_recipe(recipe_id):
     recipe = Recipe.get_recipe_with_user(recipe_id)
     print(f"recipe: {recipe}")
     return render_template('show.html', recipe=recipe)
+
 
 @app.route('/recipe/<int:recipe_id>')
 def delete_recipe(recipe_id):

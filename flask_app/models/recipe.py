@@ -16,7 +16,7 @@ class Recipe:
         self.user_id = data['user_id']
     
     @staticmethod
-    def validate_recepi(user):
+    def validate_recipe(user):
         is_valid = True # asumimos que esto es true
         if len(user['name']) < 3:
             flash("Name must be at least 3 characters.", 'new_recepi')
@@ -72,8 +72,8 @@ class Recipe:
         query = """UPDATE recipes
                         SET name = %(name)s
                         , description = %(description)s
-                        , instruction = %(instructions)s
-                        , under_thirty = %(under_thyrty)s
+                        , instructions = %(instructions)s
+                        , under_thirty = %(under_thirty)s
                         , created_at = %(created_at)s
                         , updated_at = NOW()
                     WHERE id= %(id)s;"""

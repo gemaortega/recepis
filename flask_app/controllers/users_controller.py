@@ -12,16 +12,13 @@ def login_reg():
     return render_template('login_reg.html')
 
 
-
 @app.route('/register', methods=['POST'])
 def register():
     if not User.validate_user(request.form):
-        # redirigimos a la plantilla con el formulario
         return redirect('/')
-    # ...hacer otras cosas
     return redirect('/login')
 
-# RUTAS DE CREACION (CREATE)
+
 @app.route('/create_user', methods=['POST'])
 def create_user():
     if not User.validate_user(request.form):
@@ -37,31 +34,14 @@ def create_user():
     print(data, "EFECTIVAMENTE ATRAPAMOS LA INFO DEL FORMULARIO")
     id_user = User.save(data)
     print(id_user, "QUE RETORNO EL HABER REGISTRADO UN USUARIO NUEVO?")
-    return render_template("recipes.html", user_name=request.form['first_name'])
+    session['user_id'] = id_user
+    session['user_name'] = request.form['first_name']
+    print(f"session['user_id']: {session['user_id']}")
+    print(f"session['user_name']: {session['user_name']}")
+    # A diferencia del render_template("recipes.html") del login, aquí no le pasamos la variable "all_recipes"
+    # ya que como el usaurio acaba de ser creado no debe tener ninguna receta asociada a él.
+    return render_template("recipes.html")
 
-
-@app.route('/clearsession')
-def clear_session():
-    session.clear()
-    return redirect('/')
-
-# TODO Yo creo que este método no se usa
-@app.route('/register/user', methods=['POST'])
-def register_user():
-    # validar el formulario aquí...
-    # crear el hash
-    pw_hash = bcrypt.generate_password_hash(request.form['password'])
-    print(pw_hash)
-    # poner pw_hash en el diccionario de datos
-    data = {
-        "username": request.form['username'],
-        "password" : pw_hash
-    }
-    # llama al @classmethod de guardado en Usuario
-    user_id = User.save(data)
-    # almacenar id de usuario en la sesión
-    session['user_id'] = user_id
-    return redirect("/dashboard")
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -82,9 +62,4 @@ def login():
     session['user_name'] = user_in_db.first_name
     print(f"session['user_id']: {session['user_id']}")
     print(f"session['user_name']: {session['user_name']}")
-    return render_template('recipes.html', user_name=user_in_db.first_name, all_recipes=Recipe.all_recipes_with_user())
-
-@app.route('/logout')
-def logout():
-	session.pop('email', None)
-	return redirect('/index.html')
+    return render_template('recipes.html', all_recipes=Recipe.all_recipes_with_user())

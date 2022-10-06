@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
     <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
-    <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/data.js') }}">
+    <script src="https://kit.fontawesome.com/6c7c322b7f.js" crossorigin="anonymous"></script>
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -37,12 +37,18 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/recipes">Recipes</a></li>
-                    <li><a href="/new_recipes">Created</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/recipes">Recipes</a></li>
+                    {% if 'user_id' in session %}
+                    <li><a href="/create_recipe">Create Recipe</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout, {{session['user_name']}}</a></li>
+                {% else %}
+                    <li><a href="/login_reg"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                {% endif %}
                 </ul>
             </div>
         </div>
@@ -50,7 +56,7 @@
 
     <div class="container-fluid bg-3">
         <h2>Edit Recipe</h2><br>
-        <form action="/created" method="POST">
+        <form action="/edit" method="POST">
             <input type="hidden" id="user_id" name="user_id" value="{{recipe.user_id}}">
             <input type="hidden" id="recipe_id" name="id" value="{{recipe.id}}">
             <div class="form-group">
@@ -73,11 +79,11 @@
             </div>
             <h5>Under 30 minutes?</h5>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="under" id="under_yes" value="1" {% if recipe.under_thirty == 1 %}checked{% endif %}>
+                <input class="form-check-input" type="radio" name="under_thirty" id="under_yes" value="1" {% if recipe.under_thirty == 1 %}checked{% endif %}>
                 <label class="form-check-label" for="under_yes">Yes</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="under" id="under_no" value="0" {% if recipe.under_thirty == 0 %}checked{% endif %}>
+                <input class="form-check-input" type="radio" name="under_thirty" id="under_no" value="0" {% if recipe.under_thirty == 0 %}checked{% endif %}>
                 <label class="form-check-label" for="under_no">No</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
