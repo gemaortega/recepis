@@ -54,8 +54,15 @@ def show_recipe(recipe_id):
     return render_template('show.html', recipe=recipe)
 
 
-@app.route('/recipe/<int:recipe_id>')
+@app.route('/delete/<int:recipe_id>')
 def delete_recipe(recipe_id):
     recipe = Recipe.get_recipe_with_user(recipe_id)
     print(f"recipe: {recipe}")
-    return render_template('recipe.html', recipe=recipe)
+    return render_template('delete.html', recipe=recipe)
+
+
+"""@app.route('/delete/<int:recipe_id>', methods=['POST'])
+def remove(recipe_id):
+    Recipe = Recipe.query.get_or_404(id)
+    delete(Recipe)
+    return redirect('/recipes.html')"""

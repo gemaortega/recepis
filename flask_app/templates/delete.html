@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RecipesApp</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
+    <link rel="stylesheet" type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+    <script src="https://kit.fontawesome.com/6c7c322b7f.js" crossorigin="anonymous"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Recipes App</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/recipes">Recipes</a></li>
+                    {% if 'user_id' in session %}
+                    <li><a href="/create_recipe">Create Recipe</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                {% if 'user_id' in session %}
+                    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout, {{session['user_name']}}</a></li>
+                {% else %}
+                    <li><a href="/login_reg"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <body>
+        <h1>Recipe: {{recipe['name']}}</h1>
+        <!--https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_grid_ex&stacked=h -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6" style="background-color:lavender;">Descripcion:</div>
+                <div class="col-sm-6" style="background-color:orange;">{{recipe['description']}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" style="background-color:lavender;">Under 30 minutes?</div>
+                <div class="col-sm-6" style="background-color:orange;">{{recipe['under_thirty']}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" style="background-color:lavender;">Instructions:</div>
+                <div class="col-sm-6" style="background-color:orange;">{{recipe['instructions']}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" style="background-color:lavender;">Data made:</div>
+                <div class="col-sm-6" style="background-color:orange;">{{recipe['created_at']}}</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Delete</button>
+            <!--<form method="post" action="{{ url_for('remove', id=object.id) }}">
+                <button type="submit">Delete</button>
+            </form> -->
+        </div>
+        <footer class="container-fluid text-center">
+            <p>Recipes Share App</p>
+        </footer>
+
+    </body>
+
+</html>

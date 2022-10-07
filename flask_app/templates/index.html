@@ -38,10 +38,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">Home</a></li>
-          <li><a href="/recipes">Recipes</a></li>
-          {% if 'user_id' in session %}
-          <li><a href="/create_recipe">Create Recipe</a></li>
-          {% endif %}
+          
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if 'user_id' in session %}
@@ -90,7 +87,7 @@
 
 
   <footer class="container-fluid text-center">
-    <p>RecipesApp</p>
+    <p>Recipes Share App</p>
   </footer>
 
 </body>

@@ -67,7 +67,6 @@
             {% endif %} 
           {% endwith %}
     <h2>Add a new recipe</h2><br>
-    <h4>Description must not be blank</h4>
     <form action="/created" method="POST">
       <!-- ESTE ID DEBE VENIR DE LA SESIÓN -->
       <input type="hidden" id="user_id" name="user_id" value="{{session['user_id']}}">
