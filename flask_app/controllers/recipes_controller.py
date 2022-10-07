@@ -42,7 +42,7 @@ def edit_recipe_form(recipe_id):
 def edit_recipe():
     if not Recipe.validate_recipe(request.form):
         print("invalid recipe")
-        redirect(f'/edit/{request.form["id"]}')
+        return redirect(f'/edit/{request.form["id"]}')
     Recipe.edit(request.form)
     return redirect('/recipes')
 

@@ -56,25 +56,33 @@
 
     <body>
         <h1>Recipe: {{recipe['name']}}</h1>
-        <!--https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_grid_ex&stacked=h -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col" style="background-color:lavender;">Descripcion:</div>
-                <div class="col" style="background-color:orange;">{{recipe['description']}}</div>
-            </div>
-            <div class="row">
-                <div class="col" style="background-color:lavender;">Under 30 minutes?</div>
-                <div class="col" style="background-color:orange;">{{recipe['under_thirty']}}</div>
-            </div>
-            <div class="row">
-                <div class="col" style="background-color:lavender;">Instructions:</div>
-                <div class="col" style="background-color:orange;">{{recipe['instructions']}}</div>
-            </div>
-            <div class="row">
-                <div class="col" style="background-color:lavender;">Data made:</div>
-                <div class="col" style="background-color:orange;">{{recipe['created_at']}}</div>
-            </div>
-        </div>
+
+        <table class="table">
+            <tr>
+                <td>Description</td>
+                <td>{{recipe['description']}}</td>
+            </tr>
+            <tr>
+                <td>Under?</td>
+                <td>
+                {% if recipe['under_thirty'] == 1 %}
+                Yes
+                {% else %}
+                No
+                {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Instructions</td>
+                <td>{{recipe['instructions']}}</td>
+            </tr>
+            <tr>
+                <td>Date made:</td>
+                <td>{{recipe['created_at']}}</td>
+            </tr>
+        </table>
+
+
         <footer class="container-fluid text-center">
             <p>Recipes Share App</p>
         </footer>
