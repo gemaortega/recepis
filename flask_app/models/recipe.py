@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from unittest import result
 from flask_app.config.constants import DB_SCHEMA
 from flask_app.config.mysqlconnection import connect_to_mysql
 from flask import flash

@@ -56,6 +56,18 @@
   </nav>
 
   <div class="container-fluid bg-3">
+
+      {% with messages = get_flashed_messages(category_filter=['created_recipe', 'edited_recipe', 'deleted_recipe']) %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-warning" role="alert">
+            {{message}}
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+
     <h1>Welcome {{session['user_name']}}</h1>
     <h2>All posted recipes</h2>
     <table class="table">

@@ -1,6 +1,5 @@
-from crypt import methods
 from datetime import datetime
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, flash
 
 from flask_app import app
 from flask_app.models.recipe import Recipe
@@ -24,6 +23,7 @@ def created():
         print("invalid recipe")
         return redirect("/create_recipe")
     Recipe.created(request.form)
+    flash(f"Recipe {request.form['name']} created.", 'created_recipe')
     return redirect('/recipes')
 
 
@@ -44,6 +44,7 @@ def edit_recipe():
         print("invalid recipe")
         return redirect(f'/edit/{request.form["id"]}')
     Recipe.edit(request.form)
+    flash(f"Recipe {request.form['name']} edited.", 'edited_recipe')
     return redirect('/recipes')
 
 
@@ -68,4 +69,5 @@ def remove(recipe_id):
     }
     Recipe.delete_recipe(recipe_dict)
     print(f"the recipe: {recipe_id} was eliminated")
+    flash(f"Recipe ID {recipe_id} deleted.", 'deleted_recipe')
     return redirect('/recipes')
