@@ -55,14 +55,17 @@ def show_recipe(recipe_id):
 
 
 @app.route('/delete/<int:recipe_id>')
-def delete_recipe(recipe_id):
+def confirm_delete_recipe(recipe_id):
     recipe = Recipe.get_recipe_with_user(recipe_id)
     print(f"recipe: {recipe}")
     return render_template('delete.html', recipe=recipe)
 
 
-"""@app.route('/delete/<int:recipe_id>', methods=['POST'])
+@app.route('/remove/<int:recipe_id>')
 def remove(recipe_id):
-    Recipe = Recipe.query.get_or_404(id)
-    delete(Recipe)
-    return redirect('/recipes.html')"""
+    recipe_dict={
+        'id':recipe_id 
+    }
+    Recipe.delete_recipe(recipe_dict)
+    print(f"the recipe: {recipe_id} was eliminated")
+    return redirect('/recipes')

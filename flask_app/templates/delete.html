@@ -74,10 +74,8 @@
                 <div class="col-sm-6" style="background-color:lavender;">Data made:</div>
                 <div class="col-sm-6" style="background-color:orange;">{{recipe['created_at']}}</div>
             </div>
-            <button type="submit" class="btn btn-primary">Delete</button>
-            <!--<form method="post" action="{{ url_for('remove', id=object.id) }}">
-                <button type="submit">Delete</button>
-            </form> -->
+            
+            <a href="/remove/{{recipe['id']}}"><button class="btn btn-warning" >Delete</button></a>
         </div>
         <footer class="container-fluid text-center">
             <p>Recipes Share App</p>

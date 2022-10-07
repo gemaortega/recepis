@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from unittest import result
 from flask_app.config.constants import DB_SCHEMA
 from flask_app.config.mysqlconnection import connect_to_mysql
 from flask import flash
@@ -81,6 +82,6 @@ class Recipe:
         print(f'Resultado UPDATE: {result}')
 
     @classmethod
-    def delete_recipe(cls,data):
-        query  = "DELETE FROM users WHERE id = %(id)s;"
-        return connect_to_mysql(DB_SCHEMA).query_db(query, data)
+    def delete_recipe(cls,data_dict):
+        query  = "DELETE FROM recipes WHERE id = %(id)s;"
+        connect_to_mysql(DB_SCHEMA).query_db(query, data_dict)
